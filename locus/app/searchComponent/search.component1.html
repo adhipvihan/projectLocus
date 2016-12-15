@@ -1,0 +1,70 @@
+<div class="wide">
+    <div class="col-xs-12 logo">
+        <div class="text-center">
+  <h1><span class="label label-info">Locus</span></h1>
+</div>
+
+<div 
+    class="col-md-6 col-md-offset-3" 
+    *ngIf="isLoading">
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
+</div>
+<form [ngFormModel]="form" (ngSubmit)="search()">
+
+   <div class="col-md-6 col-md-offset-3">
+    <div class="form-group">
+     
+            <input
+            (input) = "debouncedSearch($event)"
+            ngControl="city"
+            #city="ngForm"
+            type="text" 
+            class="form-control" 
+            id="city" 
+            placeholder="Search location..."
+            list="locationDataList"
+            autocomplete="off"
+            required>
+
+            <datalist id="locationDataList">
+ 
+            </datalist> 
+                
+    </div>
+
+    <div *ngIf="city.touched && city.errors">
+        <div
+            *ngIf="city.errors.required" 
+            class="alert alert-danger">
+            Please select city.
+        </div>
+    </div>
+
+
+    <div
+        *ngIf="isNotPresent" 
+        class="alert alert-danger">
+        Given location is invalid. Please select appropriate location from drop down and search again.
+    </div>
+
+    <div
+        *ngIf="isError" 
+        class="alert alert-danger">
+        Oops! Something went wrong. Please try again later.
+    </div>
+    
+    </div>    
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
+            Search
+    </button>
+</form>
+
+    </div>
+</div>
+
+<div class="container">
+    <!-- Individual Components -->
+    <dcl-wrapper *ngIf="weatherComponent" [type]="weatherComponent.type" [selectedCity]="weatherComponent.selectedCity"></dcl-wrapper>
+    <dcl-wrapper *ngIf="yelpComponent" [type]="yelpComponent.type" [selectedCity]="yelpComponent.selectedCity"></dcl-wrapper>
+
+</div><!-- /.container -->

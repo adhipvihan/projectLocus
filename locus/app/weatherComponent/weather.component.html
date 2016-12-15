@@ -1,0 +1,68 @@
+<div class="zippy">
+    <div 
+        class="zippy-title"
+        (click)="toggleMain()">
+        <div *ngIf="selectedLocation">
+          <h3> How's weather at {{ selectedLocation.cityName }} ? </h3>
+        </div>
+
+        <i 
+            class="pull-right glyphicon" 
+            [ngClass]="
+                { 
+                    'glyphicon-chevron-down': !isMainExpanded, 
+                    'glyphicon-chevron-up': isMainExpanded 
+                }">
+        </i>
+    </div>
+    <div *ngIf="isMainExpanded" class="zippy-content">
+         <div class="zippy">
+              <div 
+                  class="zippy-title"
+                  (click)="toggle()">
+                  <div class="media currentForecast" *ngIf="weatherResponse">
+                      <div class="media-left">
+                        <img class="media-object iconImage" src="{{ weatherResponse.current_observation.icon_url }}" alt="{{ weatherResponse.current_observation.weather }}">
+                        <p> &nbsp; <b> {{ weatherResponse.current_observation.weather }} </b> </p>
+                            
+                      </div>
+                      <div class="media-body">
+                        <h2 class="media-heading"><small class="date">{{today}}</small></h2>
+                        <h1 class="media-heading"><small> {{  weatherResponse.current_observation.temp_c }} &deg;C </small></h1>
+                        <div class="lowhigh">
+                          <h1 class="media-heading">  <h4><b>Feels like:</b></h4>  <small>{{ weatherResponse.current_observation.feelslike_c }} &deg;C </small> </h1><br>
+                          <h1 class="media-heading">  <h4><b>Wind:</b></h4> <small>{{ weatherResponse.current_observation.wind_mph }} mph</small></h1>
+                        </div>
+                      
+                      </div>
+
+                    </div>
+                  <div class="pull-right" *ngIf="isExpanded">
+                      <span class="label label-warning">Hide forecast</span>
+                  </div>
+                  <div class="pull-right" *ngIf="!isExpanded">
+                      <span class="label label-primary">Show forecast</span>
+                  </div>
+              </div>
+              <div *ngIf="isExpanded" class="zippy-content">
+                  <h1><small>Forecast</small></h1>
+                  <div class="media forecastDays" *ngFor="#day of forecast">
+                    <div class="media-left">
+                      <img class="media-object iconImage" src="{{ day.icon_url }}" alt="{{ day.conditions }}">
+                      <p> &nbsp; <b> {{ day.conditions }} </b> </p>
+                          
+                    </div>
+                    <div class="media-body">
+                      <h2 class="media-heading"><small class="date">{{day.date.day}} {{day.date.monthname_short}}, {{day.date.year}}</small></h2>
+                      <div class="lowhigh">
+                        <h1 class="media-heading">  <h4><b>Low:</b></h4>  <small>{{ day.low.celsius }} &deg;C </small> </h1><br>
+                        <h1 class="media-heading">  <h4><b>High:</b></h4> <small>{{ day.high.celsius }} &deg;C </small></h1><br>
+                        <h1 class="media-heading">  <h4><b>Wind:</b></h4> <small>{{ day.avewind.mph }} mph </small></h1>
+                      </div>                    
+                    </div>
+                  </div>
+              </div>
+      </div>
+    </div>
+</div>     
+

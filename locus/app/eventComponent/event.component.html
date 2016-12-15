@@ -1,0 +1,53 @@
+<div class="zippy">
+    <div 
+        class="zippy-title"
+        (click)="toggle()">
+        <div *ngIf="selectedLocation">
+            <h3> Events in {{ selectedLocation.cityName }} </h3>
+        </div>
+        <i 
+            class="pull-right glyphicon" 
+            [ngClass]="
+                { 
+                    'glyphicon-chevron-down': !isExpanded, 
+                    'glyphicon-chevron-up': isExpanded 
+                }">
+        </i>
+    </div>
+    <div *ngIf="isExpanded" class="zippy-content">
+        <div *ngFor="#events of eventsArray" class="media">
+            <div *ngIf="events.image!=null" class="media-left">
+                <a href="{{ events.url }}" target="_blank">
+                    <img class="media-object eventImage" [src]="events.image.medium.url">
+                </a>
+            </div>
+
+            <div *ngIf="events.image==null" class="media-left">
+                <a href="{{ events.url }}" target="_blank">
+                    <img class="media-object eventImage" src="https://image.freepik.com/free-vector/party-background-with-people-silhoettes_1048-43.jpg">
+                </a>
+            </div>
+
+            <div class="media-body">
+                <a href="{{ events.url }}" target="_blank"><h3 class="media-heading">{{ events.title }}</h3></a>
+                <div *ngIf="events.performers!=null">
+                <label ><b>Performers</b></label>
+                <ul class="liCategory">
+                    <li class="liCategory" *ngFor="#performer of events.performers">
+                        <span class="label label-primary">{{ performer }}</span>
+                    </li>
+                </ul>
+                </div>
+                <h4 class="media-heading">{{ events.venue_name }}</h4>
+                <h5 class="media-heading"><b>{{ events.venue_address }}</b></h5>
+                <h5 class="media-heading"><b>{{ events.city_name }}</b></h5>
+                <h5 class="media-heading"><b>{{ events.start_time  }}</b></h5>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>  
+
+
+
+

@@ -1,0 +1,22 @@
+{
+  "name": "locus-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abhishek Pimple",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "eventful-node": "^1.1.1",
+    "express": "^4.14.0",
+    "foursquarevenues": "^2.0.0",
+    "hashmap": "^2.0.6",
+    "mongoose": "^4.5.8",
+    "node-restful": "^0.2.5",
+    "regex": "^0.1.1",
+    "yelp": "^1.0.1"
+  }
+}

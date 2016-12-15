@@ -1,0 +1,67 @@
+ .forecastDays {
+    display: inline-block;
+    border-style: solid;
+    padding: 5px 10px;
+    border-color: #7979FF;
+    border-width: 2px;
+    position: relative;
+}
+
+.media-body {
+    width: 200px;
+}
+
+.iconImage {
+    width: 110;
+    height: 110;
+    border-radius: 100%;
+}
+
+.date {
+    color: #FF6600;
+}
+
+.lowhigh h1,h4 {
+    display: inline;
+}
+
+.zippy {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.zippy .zippy-title {
+    padding: 20px;
+    font-weight: bold;
+    width: 600px;
+}
+
+.zippy .zippy-title:hover{
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.zippy .zippy-content {
+    padding: 20px;
+}
+
+
+.zippyMain {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.zippyMain .zippyMain-title {
+    padding: 20px;
+    font-weight: bold;
+    width: 600px;
+}
+
+.zippyMain .zippyMain-title:hover{
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.zippyMain .zippyMain-content {
+    padding: 20px;
+}

@@ -1,0 +1,49 @@
+<div class="zippy">
+    <div 
+        class="zippy-title"
+        (click)="toggle()">
+        <div *ngIf="selectedLocation">
+            <h3> Popular restaurants in {{ selectedLocation.cityName }} </h3>
+        </div>
+        <i 
+            class="pull-right glyphicon" 
+            [ngClass]="
+                { 
+                    'glyphicon-chevron-down': !isExpanded, 
+                    'glyphicon-chevron-up': isExpanded 
+                }">
+        </i>
+    </div>
+    <div *ngIf="isExpanded" class="zippy-content">
+        <div *ngFor="#restaurant of restaurants" class="media">
+            <div class="media-left">
+                <a href="{{ restaurant.url }}" target="_blank">
+                    <img class="media-object restImage" src="{{ restaurant.image_url }}" />
+                </a>
+                <img class="media-object" src="{{ restaurant.rating_img_url_large }}" />
+            </div>
+            <div class="media-body">
+                <a href="{{ restaurant.url }}" target="_blank"><h3 class="media-heading">{{ restaurant.name }}</h3></a>
+                <h4 class="media-heading">{{ restaurant.display_phone }}</h4>
+                <label><b>Specialities:</b></label>
+                <ul class="liCategory">
+                    <li class="liCategory" *ngFor="#category of restaurant.categories">
+                        <span class="label label-primary">{{ category[0] }}</span>
+                    </li>
+                </ul>
+                
+                <div class="well well-sm">
+                    {{ restaurant.snippet_text }}
+                </div>
+                <h5 class="media-heading"><b>{{ restaurant.location.display_address[0] }},</b></h5>
+                <h5 class="media-heading"><b>{{ restaurant.location.display_address[1] }}</b></h5>
+                <a target="_blank" href="{{mapUrl + restaurant.location.display_address[0] + ' ' + restaurant.location.display_address[1] }}">Click here to get directions</a>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>  
+
+
+
+

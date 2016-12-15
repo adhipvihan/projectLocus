@@ -1,0 +1,82 @@
+<div class="page-header text-center">
+  <h1><span class="label label-info">Locus</span></h1>
+</div>
+
+<form [ngFormModel]="form" (ngSubmit)="search()">
+
+    <div class="row">
+
+        <div class="form-group col-xs-3">
+            <label class="radio-inline"><input type="radio" id="searchCity" name="searchCat" (click)="radioClick($event)" checked>Search by city name</label>
+            <label class="radio-inline"><input type="radio" id="searchZipcode" name="searchCat" (click)="radioClick($event)">Search by zipcoode</label>
+        </div>
+
+        <div class="form-group col-xs-6">
+     
+            <input
+            (input) = "debouncedSearch($event)"
+            ngControl="city"
+            #city="ngForm"
+            type="text" 
+            class="form-control" 
+            id="city" 
+            placeholder="{{ currentPlaceHolder }}"
+            list="locationDataList"
+            autocomplete="off"
+            required>
+
+            <datalist id="locationDataList">
+ 
+            </datalist> 
+                
+        </div>
+
+        <div 
+            class="col-xs-1" 
+            *ngIf="isLoading">
+                <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </div>
+
+        <div class="form-group col-xs-2">
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
+                Locus Search
+            </button>
+        </div>
+            
+    </div>
+    
+    <div *ngIf="city.touched && city.errors">
+        <div
+            *ngIf="city.errors.required" 
+            class="alert alert-danger col-xs-6 col-md-offset-3">
+            Please provide city name or zip code.
+        </div>
+    </div>
+
+
+    <div
+        *ngIf="isNotPresent" 
+        class="alert alert-danger col-xs-6 col-md-offset-3">
+        Given location is invalid. Please select appropriate location from drop down and search again.
+    </div>
+
+    <div
+        *ngIf="isError" 
+        class="alert alert-danger col-xs-6 col-md-offset-3">
+        Oops! Something went wrong. Please try again later.
+    </div>
+
+    
+</form>
+
+<!-- Individual Components -->
+
+<dcl-wrapper *ngIf="weatherComponent" [type]="weatherComponent.type" [selectedCity]="weatherComponent.selectedCity" [searchByCity]="weatherComponent.searchByCity"></dcl-wrapper>
+
+<dcl-wrapper *ngIf="foursquareComponent" [type]="foursquareComponent.type" [selectedCity]="foursquareComponent.selectedCity" [searchByCity]="foursquareComponent.searchByCity"></dcl-wrapper>
+
+<dcl-wrapper *ngIf="yelpComponent" [type]="yelpComponent.type" [selectedCity]="yelpComponent.selectedCity" [searchByCity]="yelpComponent.searchByCity"></dcl-wrapper>
+
+<dcl-wrapper *ngIf="eventComponent" [type]="eventComponent.type" [selectedCity]="eventComponent.selectedCity" [searchByCity]="eventComponent.searchByCity"></dcl-wrapper>
+
+
