@@ -13,7 +13,6 @@ interest about any particular new location using a separate search queries for e
 There is a need for the service which can gather the required data from different sources about
 the particular location and combine the results in a single page using unified interface before
 showing them to the user.
-
 In project Locus, we are strongly focussing on location our users are interested in, hence
 the name Locus (​ Loc​ ation foc​ us​ ). This is the mashup project in which we have solved data
 integration query problem. Here the query from users is the location they are interested in and
